@@ -1,22 +1,23 @@
 library(TSSS)
 data <- read.csv("nikkei_recent.csv",header=T)
 
-init_value <- data$I’l
+init_value <- data$ï¿½Iï¿½l
 init_value <- init_value[!is.na(init_value)]
 value <- diff(log(init_value))
 
+# test
 par(mfrow=c(4,1)) 
 par(mgp=c(1.3, 0.5, 0))
-par(mar = c(2.5, 3, 1, 1)) # ƒOƒ‰ƒt‚ÌŽüˆÍ‚Ì—]”’‚ÌL‚³‚ðs”‚ÅŽw’èD‰ºC¶CãC‰E‚Ì‡D
-# Žž•Ï•ªŽU‚Ì„’è
+par(mar = c(2.5, 3, 1, 1)) # ï¿½Oï¿½ï¿½ï¿½tï¿½ÌŽï¿½ï¿½Í‚Ì—]ï¿½ï¿½ï¿½ÌLï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ÅŽwï¿½ï¿½Dï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½Cï¿½ï¿½Cï¿½Eï¿½Ìï¿½ï¿½D
+# ï¿½ï¿½ï¿½Ï•ï¿½ï¿½Uï¿½Ìï¿½ï¿½ï¿½
 z <- tvvar( value, trend.order = 2, tau2.ini = NULL )
 # plot( exp( z$trend[,2] ),type="l" )
-# ???ƒKƒEƒXŒ^•½ŠŠ‰»
+# ???ï¿½Kï¿½Eï¿½Xï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 s3 <- ngsmth( z$sm, noisev = 1, tau2 = z$tau2, noisew = 4, sigma2 = pi*pi/2, k = 190)
 tt <- s3$trend
 
 plot(init_value,type="l")
-# Œ‹‰Ê•\Ž¦
+# ï¿½ï¿½ï¿½Ê•\ï¿½ï¿½
 plot( z$sm,type="l" )
 plot( tt[,4],type="l",lwd=2 )
 for (j in 1:7){
